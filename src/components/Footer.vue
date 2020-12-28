@@ -2,6 +2,7 @@
   <div class="page">
     <div class="scale-with-page">
       <footer>
+        <hr/>
         <b-container class="text-left">
           <b-row class="center-mobile">
             <b-col md="6">
@@ -107,7 +108,7 @@ hr {
   display: block;
   height: 1px;
 
-  margin-top: 1rem;
+  margin-top: 0;
   margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
