@@ -18,6 +18,7 @@
         <b-row class="justify-content-center pricing">
           <b-col class="column" xl="4" md="7" sm="9" cols="8">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
+              <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
                 <div class="title">Basic</div>
                 <div class="price">$ 5</div>
@@ -52,6 +53,7 @@
           </b-col>
           <b-col class="column" xl="4" md="7" sm="9" cols="8">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
+              <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
                 <div class="title">Pro</div>
                 <div class="price">$ 10</div>
@@ -86,6 +88,7 @@
           </b-col>
           <b-col class="column" xl="4" md="7" sm="9" cols="8">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
+              <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
                 <div class="title">Enterprise</div>
                 <div class="price">Contact</div>
@@ -260,6 +263,13 @@ export default {
 
         font-weight: 800;
       }
+    }
+
+    .balloon {
+      position: absolute;
+      top: 20px;
+      width: 140px;
+      opacity: 0.2;
     }
   }
 }
