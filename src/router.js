@@ -1,9 +1,5 @@
 import VueRouter from "vue-router";
 import Home from "@/views/home/Home";
-// import Licensing from "@/views/licensing/Licensing";
-// import Login from "@/views/login/Login";
-// import LicensingHome from "@/views/licensing/LicensingHome";
-// import LicensingProfile from "@/views/licensing/LicensingProfile";
 
 // create router
 const router = new VueRouter({
