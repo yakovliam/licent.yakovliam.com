@@ -22,7 +22,7 @@
           </b-col>
         </b-row>
         <b-row class="justify-content-center pricing">
-          <b-col class="column" xl="4" md="7" sm="9" cols="8">
+          <b-col class="column" xl="4" md="7" sm="9" cols="10">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
               <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
@@ -57,7 +57,7 @@
               </div>
             </div>
           </b-col>
-          <b-col class="column" xl="4" md="7" sm="9" cols="8">
+          <b-col class="column" xl="4" md="7" sm="9" cols="10">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
               <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
@@ -92,7 +92,7 @@
               </div>
             </div>
           </b-col>
-          <b-col class="column" xl="4" md="7" sm="9" cols="8">
+          <b-col class="column" xl="4" md="7" sm="9" cols="10">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
               <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">

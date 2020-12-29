@@ -47,5 +47,17 @@ body, html {
     margin-left: 200px;
     margin-right: 200px;
   }
+
+  // Extra Large
+  @media only screen and (min-width: 1400px) {
+    margin-left: 250px;
+    margin-right: 250px;
+  }
+
+  // +Extra Large
+  @media only screen and (min-width: 1600px) {
+    margin-left: 350px;
+    margin-right: 350px;
+  }
 }
 </style>
