@@ -14,9 +14,9 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <div v-b-tooltip.hover title="Currently: Invite Only">
-              <b-button size="sm" class="my-0 my-sm-0 button" squared disabled>LICENSING</b-button>
-            </div>
+            <router-link to="/profile">
+              <b-button size="sm" class="my-0 my-sm-0 button" squared>LICENSING</b-button>
+            </router-link>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

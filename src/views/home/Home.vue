@@ -5,7 +5,7 @@
     </b-modal>
     <div class="scale-with-page">
       <b-container>
-        <b-row class="top">
+        <b-row class="section">
           <b-col align-self="center">
             <div class="title">Licent</div>
             <div class="subtitle">
@@ -14,7 +14,13 @@
           </b-col>
         </b-row>
       </b-container>
-      <b-container fluid="*">
+      <b-container class="container-2" fluid="*">
+        <hr/>
+        <b-row class="section-2">
+          <b-col align-self="center">
+            <div class="title">Pricing</div>
+          </b-col>
+        </b-row>
         <b-row class="justify-content-center pricing">
           <b-col class="column" xl="4" md="7" sm="9" cols="8">
             <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
@@ -47,7 +53,7 @@
                 </div>
               </div>
               <div class="learn-more">
-                <b-button v-b-modal.info-modal class="button hvr-shadow" variant="light">LEARN MORE</b-button>
+                <b-button v-b-modal.info-modal class="button hvr-grow-shadow" variant="light">LEARN MORE</b-button>
               </div>
             </div>
           </b-col>
@@ -82,7 +88,7 @@
                 </div>
               </div>
               <div class="learn-more">
-                <b-button v-b-modal.info-modal class="button hvr-shadow" variant="light">LEARN MORE</b-button>
+                <b-button v-b-modal.info-modal class="button hvr-grow-shadow" variant="light">LEARN MORE</b-button>
               </div>
             </div>
           </b-col>
@@ -115,7 +121,7 @@
                 </div>
               </div>
               <div class="learn-more">
-                <b-button v-b-modal.info-modal class="button hvr-shadow" variant="light">GET CONTACT</b-button>
+                <b-button v-b-modal.info-modal class="button hvr-grow-shadow" variant="light">GET CONTACT</b-button>
               </div>
             </div>
           </b-col>
@@ -152,7 +158,7 @@ export default {
   font-weight: 300;
 }
 
-.top {
+.section {
 
   text-align: center;
   font-family: Inter, sans-serif;
@@ -172,8 +178,23 @@ export default {
   }
 }
 
+.container-2 {
+  padding-top: 10rem;
+}
+
+.section-2 {
+  text-align: center;
+  font-family: Inter, sans-serif;
+
+  .title {
+    font-weight: 800;
+    font-size: 40px;
+  }
+}
+
 .pricing {
-  margin-top: 10rem;
+  padding-top: 2rem;
+  padding-bottom: 10rem;
 
   // Medium and below
   @media only screen and (max-width: 992px) {

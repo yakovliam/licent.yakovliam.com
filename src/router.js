@@ -1,5 +1,8 @@
 import VueRouter from "vue-router";
-import Home from "@/views/home/Home";
+import Home from "./views/home/Home";
+import Login from "./views/login/Login";
+import Licensing from "./views/licensing/Licensing";
+import Profile from "./views/profile/Profile";
 
 // create router
 const router = new VueRouter({
@@ -9,40 +12,48 @@ const router = new VueRouter({
             name: 'home',
             component: Home,
         },
-        // {
-        //     path: '/login',
-        //     name: 'login',
-        //     component: Login,
-        // },
-        // {
-        //     path: '/licensing',
-        //     meta: {
-        //         requiresAuth: true
-        //     },
-        //     component: Licensing,
-        //     children: [
-        //         {
-        //             path: '',
-        //             component: LicensingHome,
-        //             name: 'licensinghome',
-        //             meta: {
-        //                 requiresAuth: true
-        //             },
-        //         },
-        //         {
-        //             path: 'profile',
-        //             component: LicensingProfile,
-        //             name: 'licensingprofile',
-        //             meta: {
-        //                 requiresAuth: true
-        //             },
-        //         },
-        //         {
-        //             path: '*',
-        //             redirect: {name: 'licensinghome'}
-        //         },
-        //     ]
-        // },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login,
+        },
+        {
+            path: '/profile',
+            name: 'profile',
+            meta: {
+                requiresAuth: true
+            },
+            component: Profile,
+        },
+        {
+            path: '/licensing',
+            meta: {
+                requiresAuth: true
+            },
+            component: Licensing,
+            // children: [
+            //     {
+            //         path: '',
+            //         component: LicensingHome,
+            //         name: 'licensinghome',
+            //         meta: {
+            //             requiresAuth: true
+            //         },
+            //     },
+            //     {
+            //         path: 'profile',
+            //         component: LicensingProfile,
+            //         name: 'licensingprofile',
+            //         meta: {
+            //             requiresAuth: true
+            //         },
+            //     },
+            //     {
+            //         path: '*',
+            //         redirect: {name: 'licensinghome'}
+            //     },
+            // ]
+        },
         {
             path: '*',
             redirect: {name: 'home'}
