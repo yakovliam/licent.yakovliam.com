@@ -32,16 +32,4 @@ export default {
   padding-top: 1rem;
   padding-bottom: 25rem;
 }
-
-
-.title {
-  text-align: left;
-
-  font-weight: 900;
-  font-size: 1.5rem;
-}
-
-.clients-table {
-  padding-top: 2rem;
-}
 </style>

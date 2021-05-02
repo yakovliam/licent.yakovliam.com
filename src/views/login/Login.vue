@@ -96,7 +96,7 @@ export default {
         })).error;
 
         if (error) {
-          this.alertText = "Incorrect email or password";
+          this.alertText = error.message;
         } else {
           Vue.prototype.$loggedIn = true;
           // send bus

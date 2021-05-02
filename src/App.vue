@@ -12,10 +12,18 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Vue from "vue";
 
 export default {
   name: 'App',
   components: {Footer, Header},
+  created() {
+    // check if logged in or not
+    alert(this.$supabase.auth.user());
+    Vue.prototype.$loggedIn = this.$supabase.auth.user() !== null;
+    // send bus state change
+    this.$bus.$emit('loginStateChange');
+  }
 };
 </script>
 

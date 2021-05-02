@@ -17,6 +17,11 @@
             <router-link to="/licensing">
               <b-button size="sm" class="button" squared>LICENSING</b-button>
             </router-link>
+            <router-link to="/profile">
+              <b-button v-if="this.isLoggedIn" size="sm" class="ml-xl-1 ml-lg-1 button" squared>
+                PROFILE
+              </b-button>
+            </router-link>
             <router-link to="/home">
               <b-button v-if="this.isLoggedIn" size="sm" class="ml-xl-1 ml-lg-1 button" squared v-on:click="logout">
                 LOG

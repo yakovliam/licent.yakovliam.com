@@ -10,6 +10,7 @@ import Manage from "./views/licensing/product/Manage";
 import Clients from "./views/licensing/product/clients/Clients";
 import NewProduct from "./views/licensing/product/NewProduct";
 import NewClient from "./views/licensing/product/clients/NewClient";
+import Signup from "./views/signup/Signup";
 
 // create router
 const router = new VueRouter({
@@ -18,6 +19,11 @@ const router = new VueRouter({
             path: '/home',
             name: 'home',
             component: Home,
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: Signup
         },
         {
             path: '/login',
