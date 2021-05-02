@@ -8,10 +8,9 @@ import axios from 'axios';
 import VueAxios from 'vue-axios';
 
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
-
 import {createClient} from '@supabase/supabase-js'
-
 import VuePageTransition from 'vue-page-transition';
+import VueAnalytics from "vue-analytics";
 
 
 // Install BootstrapVue
@@ -20,6 +19,11 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 // Use page transitions
 Vue.use(VuePageTransition)
+// Use vue analytics
+Vue.use(VueAnalytics, {
+    id: "G-LC5R5HHQW6",
+    router
+});
 
 // Css
 import './scss/main.scss';
