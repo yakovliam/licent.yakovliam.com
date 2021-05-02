@@ -22,6 +22,12 @@ export default {
     Vue.prototype.$loggedIn = this.$supabase.auth.user() !== null;
     // send bus state change
     this.$bus.$emit('loginStateChange');
+  },
+  updated() {
+    // check if logged in or not
+    Vue.prototype.$loggedIn = this.$supabase.auth.user() !== null;
+    // send bus state change
+    this.$bus.$emit('loginStateChange');
   }
 };
 </script>
