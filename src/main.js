@@ -25,7 +25,7 @@ Vue.config.productionTip = false
 // initialize event bus
 Vue.prototype.$bus = EventBus;
 
-// create a single supabase client for interacting with your database
+// create a single supabase product for interacting with your database
 const supabase = createClient(process.env.VUE_APP_SUPABASE_URL, process.env.VUE_APP_SUPABASE_KEY)
 // create global context
 Vue.prototype.$supabase = supabase;

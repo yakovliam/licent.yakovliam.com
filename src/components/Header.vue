@@ -15,11 +15,14 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <router-link to="/licensing">
-              <b-button size="sm" class="my-0 my-sm-0 button" squared>LICENSING</b-button>
+              <b-button size="sm" class="button" squared>LICENSING</b-button>
             </router-link>
-            <b-button v-if="this.isLoggedIn" size="sm" class="ml-1 my-0 my-sm-0 button" squared v-on:click="logout">LOG
-              OUT
-            </b-button>
+            <router-link to="/home">
+              <b-button v-if="this.isLoggedIn" size="sm" class="ml-xl-1 ml-lg-1 button" squared v-on:click="logout">
+                LOG
+                OUT
+              </b-button>
+            </router-link>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

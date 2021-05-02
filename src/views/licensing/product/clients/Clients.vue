@@ -1,8 +1,21 @@
 <template>
   <div>
+    <b-modal v-model="deleteModal.show" id="confirm-delete-modal" centered title="Confirm deletion"
+             @ok="handleDeleteClient">
+      <p>Are you sure you want to delete the client {{ this.deleteModal.clientName }}?</p>
+    </b-modal>
     <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
     <div class="card-box shadow-sm p-3 mb-5 bg-white rounded-lg">
-      <div class="title">Clients</div>
+      <div class="top">
+        <div class="title d-inline">Client</div>
+        <div class="button-new d-inline float-right">
+          <router-link to="clients/new">
+            <b-button variant="outline-secondary">NEW
+              <b-icon icon="clipboard-plus"></b-icon>
+            </b-button>
+          </router-link>
+        </div>
+      </div>
       <b-row class="mt-3 pt-3 ml-0 shadow-sm justify-content-center" style="display: inline-block">
         <b-col xl="12" lg="12" md="12" sm="12" cols="12">
           <p class="type">{{ this.productId }}</p>
@@ -10,7 +23,8 @@
         </b-col>
       </b-row>
       <div class="clients-table">
-        <b-table ref="clients-table" id="clients-table" :busy="isBusy" :items="tableProvider" :fields="fields">
+        <b-table responsive ref="clients-table" id="clients-table" :busy="isBusy" :items="tableProvider"
+                 :fields="fields">
           <template #table-busy>
             <div class="text-center text-danger my-2">
               <b-spinner class="align-middle"></b-spinner>
@@ -21,6 +35,10 @@
             <b-button size="sm" variant="danger" @click="deleteClient(data)">
               <b-icon icon="trash"></b-icon>
             </b-button>
+          </template>
+
+          <template #cell(token)="data">
+            <b-form-input readonly v-model="data.item.token" style="width: auto"></b-form-input>
           </template>
         </b-table>
         <b-pagination
@@ -61,10 +79,15 @@ export default {
   },
   data() {
     return {
-      product: undefined,
+      deleteModal: {
+        show: false,
+        clientName: '',
+        clientId: ''
+      },
+      product: {name: ''},
       productId: undefined,
       isBusy: false,
-      perPage: 2,
+      perPage: 10,
       currentPage: 1,
       totalRows: 99,
       fields: ['name', 'id', 'token', 'actions'],
@@ -113,7 +136,22 @@ export default {
       this.$refs['clients-table'].refresh();
     },
     deleteClient(client) {
-      alert("delete " + client.item.id);
+      this.deleteModal.clientName = client.item.name;
+      this.deleteModal.clientId = client.item.id;
+      this.deleteModal.show = true;
+    },
+    async handleDeleteClient() {
+      // get client id from modal data
+      const id = this.deleteModal.clientId;
+
+      // delete from database
+      await this.$supabase
+          .from('clients')
+          .delete()
+          .match({id: id});
+
+      // refresh
+      this.$router.go(0);
     }
   }
 };
@@ -121,19 +159,28 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  text-align: left;
+.top {
+  .title {
+    text-align: left;
 
-  font-weight: 900;
-  font-size: 1.5rem;
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
 }
-
 .clients-table {
   padding-top: 2rem;
 }
 
 .type {
   font-weight: 300;
-  font-size: 1,9rem;
+  font-size: 0.9rem;
+}
+
+button {
+  font-family: Inter, sans-serif;
+  padding: 5px 13px;
+
+  font-size: 15px;
+  font-weight: 800;
 }
 </style>

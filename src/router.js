@@ -4,10 +4,12 @@ import Login from "./views/login/Login";
 import Licensing from "./views/licensing/Licensing";
 import Profile from "./views/profile/Profile";
 import Vue from "vue";
-import Products from "./views/licensing/products/Products";
-import Manage from "./views/licensing/products/Manage";
-import Product from "./views/licensing/products/Product";
-import Clients from "./views/licensing/products/Clients";
+import Products from "./views/licensing/Products";
+import Product from "./views/licensing/product/Product";
+import Manage from "./views/licensing/product/Manage";
+import Clients from "./views/licensing/product/clients/Clients";
+import NewProduct from "./views/licensing/product/NewProduct";
+import NewClient from "./views/licensing/product/clients/NewClient";
 
 // create router
 const router = new VueRouter({
@@ -59,9 +61,19 @@ const router = new VueRouter({
                         {
                             path: 'clients',
                             component: Clients,
-                            name: 'clients'
+                            name: 'clients',
+                        },
+                        {
+                            path: 'clients/new',
+                            component: NewClient,
+                            name: 'newclient'
                         }
                     ]
+                },
+                {
+                    path: "products/new",
+                    component: NewProduct,
+                    name: "newproduct"
                 },
                 {
                     path: '',

@@ -27,7 +27,7 @@
               <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
                 <div class="title">Basic</div>
-                <div class="price">$ 5</div>
+                <div class="price">$ 25</div>
                 <div class="sub-price">per month</div>
               </div>
               <div class="left">
@@ -42,7 +42,7 @@
                     <li>
                       <b-icon icon="check2-circle"></b-icon>
                       Up to
-                      <div class="bolded">2,000</div>
+                      <div class="bolded">2,500</div>
                       clients per product
                     </li>
                     <li>
@@ -62,7 +62,7 @@
               <b-img class="balloon" src="~/../../assets/balloon.svg"/>
               <div class="right">
                 <div class="title">Pro</div>
-                <div class="price">$ 10</div>
+                <div class="price">$ 75</div>
                 <div class="sub-price">per month</div>
               </div>
               <div class="left">
@@ -71,7 +71,7 @@
                     <li>
                       <b-icon icon="check2-circle"></b-icon>
                       Up to
-                      <div class="bolded">200</div>
+                      <div class="bolded">250</div>
                       digital products
                     </li>
                     <li>
@@ -110,7 +110,7 @@
                     </li>
                     <li>
                       <b-icon icon="check2-circle"></b-icon>
-                      <div class="bolded">100,000+</div>
+                      <div class="bolded">Unlimited</div>
                       clients per product
                     </li>
                     <li>

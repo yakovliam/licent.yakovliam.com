@@ -2,7 +2,9 @@
   <div>
     <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
     <div class="card-box shadow-sm p-3 mb-5 bg-white rounded-lg">
-      <div class="title">Manage</div>
+      <div class="top">
+        <div class="title d-inline">Manage</div>
+      </div>
       <b-row class="mt-3 pt-3 ml-0 shadow-sm justify-content-center" style="display: inline-block">
         <b-col xl="12" lg="12" md="12" sm="12" cols="12">
           <p class="type">{{ this.productId }}</p>
@@ -31,7 +33,7 @@ export default {
   },
   data() {
     return {
-      product: undefined,
+      product: {name: ''},
       productId: undefined,
       breadcrumb: [
         {
@@ -55,10 +57,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.title {
-  text-align: left;
+.top {
+  .title {
+    text-align: left;
 
-  font-weight: 900;
-  font-size: 1.5rem;
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
 }
 </style>
