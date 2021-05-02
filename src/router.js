@@ -36,7 +36,7 @@ const router = new VueRouter({
             path: '/licensing',
             name: 'licensing',
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
             },
             component: Licensing,
             children: [

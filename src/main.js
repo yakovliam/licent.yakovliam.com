@@ -11,10 +11,15 @@ import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 
 import {createClient} from '@supabase/supabase-js'
 
+import VuePageTransition from 'vue-page-transition';
+
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin)
+// Use page transitions
+Vue.use(VuePageTransition)
 
 // Css
 import './scss/main.scss';

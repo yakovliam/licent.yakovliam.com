@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <Header/>
-    <router-view/>
+    <vue-page-transition name="fade-in-up">
+      <router-view/>
+    </vue-page-transition>
     <Footer/>
   </div>
 </template>
@@ -10,6 +12,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+
 export default {
   name: 'App',
   components: {Footer, Header},
