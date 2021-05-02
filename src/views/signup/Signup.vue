@@ -48,7 +48,7 @@
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Signup',
   computed: {
     emailFeedback() {
       if (!this.email.length >= 1) return null;
