@@ -19,7 +19,6 @@ export default {
   components: {Footer, Header},
   created() {
     // check if logged in or not
-    alert(this.$supabase.auth.user());
     Vue.prototype.$loggedIn = this.$supabase.auth.user() !== null;
     // send bus state change
     this.$bus.$emit('loginStateChange');
