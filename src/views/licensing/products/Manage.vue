@@ -3,7 +3,12 @@
     <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
     <div class="card-box shadow-sm p-3 mb-5 bg-white rounded-lg">
       <div class="title">Manage</div>
-      <p>{{ this.$route.params.id }}</p>
+      <b-row class="mt-3 pt-3 ml-0 shadow-sm justify-content-center" style="display: inline-block">
+        <b-col xl="12" lg="12" md="12" sm="12" cols="12">
+          <p class="type">{{ this.productId }}</p>
+          <p class="type">{{ this.product.name }}</p>
+        </b-col>
+      </b-row>
     </div>
   </div>
 </template>
@@ -12,8 +17,22 @@
 
 export default {
   name: 'Manage',
+  async created() {
+    // calculate product id
+    this.productId = this.$route.params.id;
+
+    // calculate product
+    // eslint-disable-next-line no-unused-vars
+    const {data, error} = await this.$supabase
+        .from('products')
+        .select('id, name')
+        .eq('id', this.productId);
+    this.product = data[0] || {name: 'N/A'};
+  },
   data() {
     return {
+      product: undefined,
+      productId: undefined,
       breadcrumb: [
         {
           text: 'Licensing',
