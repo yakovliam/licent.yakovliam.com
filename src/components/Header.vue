@@ -14,9 +14,12 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <router-link to="/profile">
+            <router-link to="/licensing">
               <b-button size="sm" class="my-0 my-sm-0 button" squared>LICENSING</b-button>
             </router-link>
+            <b-button v-if="this.isLoggedIn" size="sm" class="ml-1 my-0 my-sm-0 button" squared v-on:click="logout">LOG
+              OUT
+            </b-button>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -25,9 +28,30 @@
 </template>
 
 <script>
+import Vue from "vue";
 
 export default {
   name: 'Header',
+  methods: {
+    logout() {
+      this.$supabase.auth.signOut();
+      // send bus
+      Vue.prototype.$loggedIn = false;
+      this.$bus.$emit('loginStateChange');
+      // redirect to home
+      this.$router.push('home');
+    }
+  },
+  data() {
+    return {
+      isLoggedIn: Vue.prototype.$loggedIn
+    }
+  },
+  created() {
+    this.$bus.$on('loginStateChange', () => {
+      this.isLoggedIn = Vue.prototype.$loggedIn;
+    });
+  }
 };
 
 </script>

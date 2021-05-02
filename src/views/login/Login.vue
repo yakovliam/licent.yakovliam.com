@@ -3,12 +3,15 @@
     <div class="scale-with-page">
       <b-container class="container-1">
         <b-row class="justify-content-center">
-          <b-col xl="8" lg="12" md="12" sm="12" cols="12">
-            <div class="card-box shadow-lg p-3 mb-5 bg-white rounded-lg">
+          <b-col xl="6" lg="12" md="12" sm="12" cols="12">
+            <div class="card-box shadow p-3 mb-5 bg-white rounded-lg">
               <div class="login-form">
                 <div class="title">Login</div>
                 <template>
-                  <b-alert :show="alert" dismissible @dismissed="alert = false" variant="danger">{{ this.alertText }}</b-alert>
+                  <b-alert :show="alert" dismissible @dismissed="alert = false" variant="danger">{{
+                      this.alertText
+                    }}
+                  </b-alert>
                   <div>
                     <b-form-group
                         id="email"
@@ -44,6 +47,7 @@
 </template>
 
 <script>
+import Vue from "vue";
 
 export default {
   name: 'Login',
@@ -78,11 +82,28 @@ export default {
     }
   },
   methods: {
-    submit: function () {
+    submit: async function () {
       if (!this.validEmail || !this.validPassword) {
         this.alertText = "Please complete the form below";
       } else {
-        this.alertText = "Incorrect email or password";
+        // call signin
+        const supabase = this.$supabase;
+
+        // eslint-disable-next-line no-unused-vars
+        const error = (await supabase.auth.signIn({
+          email: this.email,
+          password: this.password,
+        })).error;
+
+        if (error) {
+          this.alertText = "Incorrect email or password";
+        } else {
+          Vue.prototype.$loggedIn = true;
+          // send bus
+          this.$bus.$emit('loginStateChange');
+          // redirect to licensing page
+          this.$router.push('licensing');
+        }
       }
       this.alert = true;
     }

@@ -7,8 +7,10 @@ import router from './router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 
-// Bootstrap
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
+import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
+
+import {createClient} from '@supabase/supabase-js'
+
 // Install BootstrapVue
 Vue.use(BootstrapVue)
 // Optionally install the BootstrapVue icon components plugin
@@ -16,14 +18,25 @@ Vue.use(IconsPlugin)
 
 // Css
 import './scss/main.scss';
+import EventBus from "./eventbus";
 
 Vue.config.productionTip = false
+
+// initialize event bus
+Vue.prototype.$bus = EventBus;
+
+// create a single supabase client for interacting with your database
+const supabase = createClient(process.env.VUE_APP_SUPABASE_URL, process.env.VUE_APP_SUPABASE_KEY)
+// create global context
+Vue.prototype.$supabase = supabase;
+
+Vue.prototype.$loggedIn = supabase.auth.user() !== null;
 
 Vue.use(VueAxios, axios)
 Vue.use(VueRouter);
 
 new Vue({
-  el: '#app',
-  router,
-  render: h => h(App)
+    el: '#app',
+    router,
+    render: h => h(App)
 }).$mount('#app');

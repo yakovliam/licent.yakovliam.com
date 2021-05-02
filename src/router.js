@@ -3,6 +3,11 @@ import Home from "./views/home/Home";
 import Login from "./views/login/Login";
 import Licensing from "./views/licensing/Licensing";
 import Profile from "./views/profile/Profile";
+import Vue from "vue";
+import Products from "./views/licensing/products/Products";
+import Manage from "./views/licensing/products/Manage";
+import Product from "./views/licensing/products/Product";
+import Clients from "./views/licensing/products/Clients";
 
 // create router
 const router = new VueRouter({
@@ -27,32 +32,42 @@ const router = new VueRouter({
         },
         {
             path: '/licensing',
+            name: 'licensing',
             meta: {
                 requiresAuth: true
             },
             component: Licensing,
-            // children: [
-            //     {
-            //         path: '',
-            //         component: LicensingHome,
-            //         name: 'licensinghome',
-            //         meta: {
-            //             requiresAuth: true
-            //         },
-            //     },
-            //     {
-            //         path: 'profile',
-            //         component: LicensingProfile,
-            //         name: 'licensingprofile',
-            //         meta: {
-            //             requiresAuth: true
-            //         },
-            //     },
-            //     {
-            //         path: '*',
-            //         redirect: {name: 'licensinghome'}
-            //     },
-            // ]
+            children: [
+                {
+                    path: 'products',
+                    component: Products,
+                    name: 'products',
+                    meta: {
+                        requiresAuth: true
+                    },
+                },
+                {
+                    path: "product/:id",
+                    component: Product,
+                    name: 'product',
+                    children: [
+                        {
+                            path: 'manage',
+                            component: Manage,
+                            name: 'manage'
+                        },
+                        {
+                            path: 'clients',
+                            component: Clients,
+                            name: 'clients'
+                        }
+                    ]
+                },
+                {
+                    path: '',
+                    redirect: {name: 'products'}
+                },
+            ],
         },
         {
             path: '*',
@@ -64,8 +79,11 @@ const router = new VueRouter({
 
 // set authentication
 router.beforeEach((to, from, next) => {
+    // get user
+    const user = Vue.prototype.$supabase.auth.user();
+
     if (to.meta.requiresAuth) { // if it requires auth
-        if (localStorage.getItem('user') !== null) {
+        if (user) {
             next();
         } else {
             next('/login');
