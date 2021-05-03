@@ -15,17 +15,23 @@
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
             <router-link to="/licensing">
-              <b-button size="sm" class="button" squared>LICENSING</b-button>
+              <div>
+                <b-button size="sm" class="licensing-button button" squared>
+                  <span>LICENSING</span>
+                  <b-icon class="mr-1" icon="lock"></b-icon>
+                </b-button>
+              </div>
             </router-link>
             <router-link to="/profile">
               <b-button v-if="this.isLoggedIn" size="sm" class="ml-xl-1 ml-lg-1 button" squared>
-                PROFILE
+                <span>PROFILE</span>
+                <b-icon class="mr-1" icon="person"></b-icon>
               </b-button>
             </router-link>
             <router-link to="/home">
               <b-button v-if="this.isLoggedIn" size="sm" class="ml-xl-1 ml-lg-1 button" squared v-on:click="logout">
-                LOG
-                OUT
+                <span>LOG OUT</span>
+                <b-icon class="mr-1" icon="power"></b-icon>
               </b-button>
             </router-link>
           </b-navbar-nav>
@@ -81,5 +87,18 @@ export default {
   font-weight: 800;
 
   background-color: #22282f;
+}
+
+button span {
+  max-width: 0;
+  -webkit-transition: max-width 1s;
+  transition: max-width 1s;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+}
+button:hover span {
+  max-width: 7rem;
 }
 </style>
