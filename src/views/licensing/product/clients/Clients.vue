@@ -7,7 +7,7 @@
     <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
     <div class="card-box shadow-sm p-3 mb-5 bg-white rounded-lg">
       <div class="top">
-        <div class="title d-inline">Client</div>
+        <div class="title d-inline">Clients</div>
         <div class="button-new d-inline float-right">
           <router-link to="clients/new">
             <b-button variant="outline-secondary">NEW
@@ -167,6 +167,7 @@ export default {
     font-size: 1.5rem;
   }
 }
+
 .clients-table {
   padding-top: 2rem;
 }
