@@ -47,7 +47,7 @@
             </li>
             <li class="list-inline-item">
               <router-link
-                  :disaabled="true"
+                  :disabled="true"
                   to="/signup">
                 <div v-b-tooltip.hover title="Currently: Invite Only">
                   <button type="button" class="btn btn-outline-primary" disabled>Sign Up</button>

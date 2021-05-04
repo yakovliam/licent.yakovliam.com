@@ -14,7 +14,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <router-link to="/licensing">
+            <router-link to="/licensing/products">
               <div>
                 <b-button size="sm" class="licensing-button button" squared>
                   <span>LICENSING</span>

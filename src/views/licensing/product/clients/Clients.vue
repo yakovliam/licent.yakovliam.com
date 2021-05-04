@@ -32,6 +32,9 @@
           </template>
 
           <template #cell(actions)="data">
+            <b-button size="sm" variant="outline-info" @click="seeData(data)">
+              <b-icon icon="clipboard-data"></b-icon>
+            </b-button>
             <b-button size="sm" variant="danger" @click="deleteClient(data)">
               <b-icon icon="trash"></b-icon>
             </b-button>
@@ -59,7 +62,7 @@ export default {
   name: 'Clients',
   async created() {
     // calculate product id
-    this.productId = this.$route.params.id;
+    this.productId = this.$route.params.productId;
 
     // calculate product
     // eslint-disable-next-line no-unused-vars
@@ -102,7 +105,7 @@ export default {
           active: false
         },
         {
-          text: this.$route.params.id,
+          text: this.$route.params.productId,
           to: {name: 'manage'},
           active: false
         },
@@ -152,7 +155,12 @@ export default {
 
       // refresh
       this.$router.go(0);
-    }
+    },
+    seeData(client) {
+      const clientId = client.item.id;
+      // redirect to manage page
+      this.$router.push({name: 'clientdata', params: {clientId}});
+    },
   }
 };
 

@@ -6,11 +6,13 @@ import Profile from "./views/profile/Profile";
 import Vue from "vue";
 import Products from "./views/licensing/Products";
 import Product from "./views/licensing/product/Product";
-import Manage from "./views/licensing/product/Manage";
+import Manage from "./views/licensing/product/ManageProduct";
 import Clients from "./views/licensing/product/clients/Clients";
 import NewProduct from "./views/licensing/product/NewProduct";
 import NewClient from "./views/licensing/product/clients/NewClient";
 import Signup from "./views/signup/Signup";
+import Client from "./views/licensing/product/clients/Client";
+import ClientData from "./views/licensing/product/clients/ClientData";
 
 // create router
 const router = new VueRouter({
@@ -55,7 +57,7 @@ const router = new VueRouter({
                     },
                 },
                 {
-                    path: "product/:id",
+                    path: "products/:productId",
                     component: Product,
                     name: 'product',
                     children: [
@@ -73,6 +75,18 @@ const router = new VueRouter({
                             path: 'clients/new',
                             component: NewClient,
                             name: 'newclient'
+                        },
+                        {
+                            path: 'clients/:clientId',
+                            component: Client,
+                            name: 'client',
+                            children: [
+                                {
+                                    path: 'data',
+                                    component: ClientData,
+                                    name: 'clientdata'
+                                }
+                            ]
                         }
                     ]
                 },

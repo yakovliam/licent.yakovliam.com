@@ -91,14 +91,14 @@ export default {
   },
   methods: {
     seeClients(product) {
-      const id = product.item.id;
+      const productId = product.item.id;
       // redirect to manage page
-      this.$router.push({name: 'clients', params: {id}});
+      this.$router.push({name: 'clients', params: {productId}});
     },
     manageProduct(product) {
-      const id = product.item.id;
+      const productId = product.item.id;
       // redirect to manage page
-      this.$router.push({name: 'manage', params: {id}});
+      this.$router.push({name: 'manage', params: {productId}});
     },
     async tableProvider() {
       this.isBusy = true;

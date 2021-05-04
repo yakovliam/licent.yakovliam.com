@@ -21,7 +21,7 @@ export default {
   name: 'Manage',
   async created() {
     // calculate product id
-    this.productId = this.$route.params.id;
+    this.productId = this.$route.params.productId;
 
     // calculate product
     // eslint-disable-next-line no-unused-vars
@@ -46,7 +46,7 @@ export default {
           active: false
         },
         {
-          text: this.$route.params.id,
+          text: this.$route.params.productId,
           active: true
         },
       ]

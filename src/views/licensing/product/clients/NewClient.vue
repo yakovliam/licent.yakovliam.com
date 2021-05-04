@@ -70,7 +70,7 @@ export default {
     // compute token
     this.form.token = this.generateRandom(8);
     // compute product id
-    this.productId = this.$route.params.id;
+    this.productId = this.$route.params.productId;
   },
   data() {
     return {
@@ -91,7 +91,7 @@ export default {
           active: false
         },
         {
-          text: this.$route.params.id,
+          text: this.$route.params.productId,
           to: {name: 'manage'},
           active: false
         },
@@ -112,7 +112,7 @@ export default {
       // create new object
       const client = {
         id: this.form.id,
-        product_id: this.$route.params.id,
+        product_id: this.$route.params.productId,
         token: this.form.token,
         name: this.form.name,
         user_uid: this.$supabase.auth.user().id
