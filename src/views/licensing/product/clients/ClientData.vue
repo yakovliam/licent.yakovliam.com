@@ -40,32 +40,29 @@ export default {
   },
   methods: {
     async fillChartData() {
-      // have to toggle off because it throws an async error when trying to update and show transitions...
-      this.dataExists = false;
-
       if (!this.dateRange.from || !this.dateRange.to) {
         return;
       }
 
-      this.chart.data = {
-        labels: [],
-        datasets: []
-      }
+      // have to toggle off because it throws an async error when trying to update and show transitions...
+      this.dataExists = false;
+
+      // reset data
+      this.chart.data.datasets = [];
 
       // calculate date interpolation
-      const startDate = this.dateRange.from;
-      const endDate = this.dateRange.to;
+      const startDate = new Date(this.dateRange.from);
+      const endDate = new Date(this.dateRange.to);
+      endDate.setDate(endDate.getDate() + 1);
 
-      const timeDiff = Date.parse(this.dateRange.to) - Date.parse(this.dateRange.from);
-      const dayDiff = timeDiff / (1000 * 3600 * 24);
-
+      const dayDiff = (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24);
       const n = dayDiff;
 
       const parser = d3.timeParse("%Y-%m-%d");
-      const formatDate = d3.timeFormat("%Y-%m-%d")
+      const formatDate = d3.timeFormat("%Y-%m-%d");
 
       const scale = d3.scaleTime()
-          .domain([parser(startDate), parser(endDate)])
+          .domain([parser(startDate.toISOString().slice(0, 10)), parser(endDate.toISOString().slice(0, 10))])
           .range([0, n]);
 
       this.chart.data.labels = d3.range(n).map(function (k) {
@@ -124,8 +121,7 @@ export default {
       // set data exists
       this.dataExists = true;
     },
-  }
-  ,
+  },
   async created() {
     // calculate product id
     this.client.id = this.$route.params.clientId;
@@ -157,7 +153,10 @@ export default {
             }]
           }
         },
-        data: {}
+        data: {
+          labels: [],
+          datasets: []
+        }
       },
       dataExists: false,
       dateRange: {

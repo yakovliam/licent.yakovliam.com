@@ -10,7 +10,7 @@ import VueAxios from 'vue-axios';
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue';
 import {createClient} from '@supabase/supabase-js'
 import VuePageTransition from 'vue-page-transition';
-import VueAnalytics from "vue-analytics";
+import VueGtag from "vue-gtag";
 
 
 // Install BootstrapVue
@@ -19,10 +19,14 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 // Use page transitions
 Vue.use(VuePageTransition)
-// Use vue analytics
-Vue.use(VueAnalytics, {
-    id: "G-LC5R5HHQW6",
-    router
+// Use vue google analytics
+Vue.use(VueGtag, {
+    config: {
+        id: "G-LC5R5HHQW6",
+        params: {
+            send_page_view: true
+        }
+    }
 });
 
 // Css
