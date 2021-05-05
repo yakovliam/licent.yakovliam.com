@@ -9,7 +9,7 @@
       <div class="top">
         <div class="title d-inline">Products</div>
         <div class="button-new d-inline float-right">
-          <router-link to="products/new">
+          <router-link to="product/new">
             <b-button variant="outline-secondary">NEW
               <b-icon icon="clipboard-plus"></b-icon>
             </b-button>

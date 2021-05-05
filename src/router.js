@@ -8,7 +8,7 @@ import Products from "./views/licensing/Products";
 import Product from "./views/licensing/product/Product";
 import Manage from "./views/licensing/product/ManageProduct";
 import Clients from "./views/licensing/product/clients/Clients";
-import NewProduct from "./views/licensing/product/NewProduct";
+import NewProduct from "./views/licensing/NewProduct";
 import NewClient from "./views/licensing/product/clients/NewClient";
 import Signup from "./views/signup/Signup";
 import Client from "./views/licensing/product/clients/Client";
@@ -91,7 +91,7 @@ const router = new VueRouter({
                     ]
                 },
                 {
-                    path: "products/new",
+                    path: "product/new",
                     component: NewProduct,
                     name: "newproduct"
                 },
