@@ -162,7 +162,7 @@ export default {
       // also delete all logs that match the product id
 
       // refresh
-      // this.$router.go(0);
+      this.$router.go(0);
     }
   }
 };
