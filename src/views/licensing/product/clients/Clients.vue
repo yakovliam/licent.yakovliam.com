@@ -147,11 +147,17 @@ export default {
       // get client id from modal data
       const id = this.deleteModal.clientId;
 
+      // delete all logs
+      await this.$supabase
+          .from('logs')
+          .delete()
+          .eq('client_id', id);
+
       // delete from database
       await this.$supabase
           .from('clients')
           .delete()
-          .match({id: id});
+          .match({'id': id.toString()});
 
       // refresh
       this.$router.go(0);

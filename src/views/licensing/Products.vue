@@ -130,6 +130,24 @@ export default {
       const id = this.deleteModal.productId;
 
       // first, delete all clients that josh is related too
+      // eslint-disable-next-line no-unused-vars
+      const {data, error} = await this.$supabase
+          .from('clients')
+          .select("id, product_id")
+          .match({'product_id': id});
+
+      // if data, delete all logs who's client id is the same as the ones from previous
+      if (data) {
+        const clientIds = data.map(a => a.id);
+
+        // eslint-disable-next-line no-unused-vars
+        const { data1, error } = await this.$supabase
+            .from('logs')
+            .delete()
+            .in('client_id', clientIds);
+      }
+
+      // now delete all related clients
       await this.$supabase
           .from('clients')
           .delete()
@@ -141,8 +159,10 @@ export default {
           .delete()
           .match({id: id});
 
+      // also delete all logs that match the product id
+
       // refresh
-      this.$router.go(0);
+      // this.$router.go(0);
     }
   }
 };
