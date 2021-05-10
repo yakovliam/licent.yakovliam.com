@@ -6,6 +6,7 @@
     </b-modal>
     <b-breadcrumb :items="breadcrumb"></b-breadcrumb>
     <div class="card-box shadow-sm p-3 mb-5 bg-white rounded-lg">
+
       <div class="top">
         <div class="title d-inline">Products</div>
         <div class="button-new d-inline float-right">
@@ -16,6 +17,7 @@
           </router-link>
         </div>
       </div>
+
       <div class="products-table">
         <b-table responsive ref="products-table" id="products-table" :busy="isBusy" :items="tableProvider"
                  :fields="fields">
@@ -98,7 +100,7 @@ export default {
     manageProduct(product) {
       const productId = product.item.id;
       // redirect to manage page
-      this.$router.push({name: 'manage', params: {productId}});
+      this.$router.push({name: 'manageproduct', params: {productId}});
     },
     async tableProvider() {
       this.isBusy = true;

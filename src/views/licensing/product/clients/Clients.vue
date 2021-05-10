@@ -18,7 +18,7 @@
       </div>
       <b-row class="mt-3 pt-3 ml-0 shadow-sm justify-content-center" style="display: inline-block">
         <b-col xl="12" lg="12" md="12" sm="12" cols="12">
-          <p class="type">{{ this.productId }}</p>
+          <p class="type">{{ this.product.id }}</p>
           <p class="type">{{ this.product.name }}</p>
         </b-col>
       </b-row>
@@ -32,12 +32,17 @@
           </template>
 
           <template #cell(actions)="data">
-            <b-button size="sm" variant="outline-info" @click="seeData(data)">
-              <b-icon icon="clipboard-data"></b-icon>
-            </b-button>
-            <b-button size="sm" variant="danger" @click="deleteClient(data)">
-              <b-icon icon="trash"></b-icon>
-            </b-button>
+            <div class="text-nowrap">
+              <b-button size="sm" variant="outline-info" @click="seeData(data)">
+                <b-icon icon="clipboard-data"></b-icon>
+              </b-button>
+              <b-button size="sm" variant="dark" @click="manageClient(data)">
+                <b-icon icon="gear"></b-icon>
+              </b-button>
+              <b-button size="sm" variant="danger" @click="deleteClient(data)">
+                <b-icon icon="trash"></b-icon>
+              </b-button>
+            </div>
           </template>
 
           <template #cell(token)="data">
@@ -62,15 +67,22 @@ export default {
   name: 'Clients',
   async created() {
     // calculate product id
-    this.productId = this.$route.params.productId;
+    this.product.id = this.$route.params.productId;
 
     // calculate product
     // eslint-disable-next-line no-unused-vars
     const {data, error} = await this.$supabase
         .from('products')
         .select('id, name')
-        .eq('id', this.productId);
-    this.product = data[0] || {name: 'N/A'};
+        .eq('id', this.product.id);
+
+    // if error, show error
+    if (error || data.length <= 0) {
+      this.$router.push({name: 'products'})
+      return;
+    }
+
+    this.product = data[0] || {name: 'N/A', id: this.product.id};
 
     // calculate number of rows
     // eslint-disable-next-line no-unused-vars
@@ -87,8 +99,7 @@ export default {
         clientName: '',
         clientId: ''
       },
-      product: {name: ''},
-      productId: undefined,
+      product: {name: '', id: undefined},
       isBusy: false,
       perPage: 10,
       currentPage: 1,
@@ -129,7 +140,7 @@ export default {
       const {data} = await this.$supabase
           .from('clients')
           .select('id, token, name')
-          .eq('product_id', this.productId)
+          .eq('product_id', this.product.id)
           .range(minRange, maxRange - 1);
 
       this.isBusy = false;
@@ -142,6 +153,11 @@ export default {
       this.deleteModal.clientName = client.item.name;
       this.deleteModal.clientId = client.item.id;
       this.deleteModal.show = true;
+    },
+    manageClient(client) {
+      const clientId = client.item.id;
+      // redirect to manage page
+      this.$router.push({name: 'manageclient', params: {clientId}});
     },
     async handleDeleteClient() {
       // get client id from modal data

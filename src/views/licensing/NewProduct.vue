@@ -79,6 +79,8 @@ export default {
   },
   methods: {
     async submit() {
+      if (!this.nameValidation) return;
+
       // create new object
       const product = {
         id: this.form.id,

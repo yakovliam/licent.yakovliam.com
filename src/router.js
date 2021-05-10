@@ -13,10 +13,17 @@ import NewClient from "./views/licensing/product/clients/NewClient";
 import Signup from "./views/signup/Signup";
 import Client from "./views/licensing/product/clients/Client";
 import ClientData from "./views/licensing/product/clients/ClientData";
+import Blog from "./views/blog/Blog";
+import ManageClient from "./views/licensing/product/clients/ManageClient";
 
 // create router
 const router = new VueRouter({
     routes: [
+        {
+            path: '/blog',
+            name: 'blog',
+            component: Blog
+        },
         {
             path: '/home',
             name: 'home',
@@ -64,7 +71,7 @@ const router = new VueRouter({
                         {
                             path: 'manage',
                             component: Manage,
-                            name: 'manage'
+                            name: 'manageproduct'
                         },
                         {
                             path: 'clients',
@@ -82,10 +89,19 @@ const router = new VueRouter({
                             name: 'client',
                             children: [
                                 {
+                                    path: 'manage',
+                                    component: ManageClient,
+                                    name: 'manageclient'
+                                },
+                                {
                                     path: 'data',
                                     component: ClientData,
                                     name: 'clientdata'
-                                }
+                                },
+                                {
+                                    path: '*',
+                                    redirect: {name: 'clients'}
+                                },
                             ]
                         }
                     ]
@@ -96,7 +112,7 @@ const router = new VueRouter({
                     name: "newproduct"
                 },
                 {
-                    path: '',
+                    path: '*',
                     redirect: {name: 'products'}
                 },
             ],

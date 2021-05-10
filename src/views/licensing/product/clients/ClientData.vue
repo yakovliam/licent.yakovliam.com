@@ -123,19 +123,34 @@ export default {
     },
   },
   async created() {
-    // calculate product id
+    // calculate client id
     this.client.id = this.$route.params.clientId;
 
-    // calculate product
+    // eslint-disable-next-line no-unused-vars
+    await this.$supabase
+        .from('products')
+        .select('id, name')
+        .eq('id', this.$route.params.productId).then((data1) => {
+          if (data1.error || data1.data.length <= 0) {
+            // redirect to products
+            this.$router.push({name: 'products'});
+          }
+        });
+
+    // calculate client
     // eslint-disable-next-line no-unused-vars
     const {data, error} = await this.$supabase
         .from('clients')
         .select('id, name')
         .eq('id', this.client.id);
 
+    if (error || data.length <= 0) {
+      // redirect to products
+      this.$router.push('/licensing/products');
+    }
+
     this.client = data[0] || {id: this.client.id, name: "N/A"};
-  }
-  ,
+  },
   data() {
     return {
       chart: {
@@ -178,7 +193,7 @@ export default {
         },
         {
           text: this.$route.params.productId,
-          to: {name: 'manage'},
+          to: {name: 'manageproduct'},
           active: false
         },
         {
@@ -188,7 +203,8 @@ export default {
         },
         {
           text: this.$route.params.clientId,
-          active: true
+          to: {name: 'manageclient'},
+          active: false
         },
         {
           text: "Data",
