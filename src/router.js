@@ -112,13 +112,13 @@ const router = new VueRouter({
                     name: "newproduct"
                 },
                 {
-                    path: '*',
+                    path: '',
                     redirect: {name: 'products'}
                 },
             ],
         },
         {
-            path: '*',
+            path: '',
             redirect: {name: 'home'}
         },
     ],
