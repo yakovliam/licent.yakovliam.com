@@ -136,7 +136,7 @@ export default {
         },
         {
           text: this.$route.params.productId,
-          to: {name: 'manage'},
+          to: {name: 'manageproduct'},
           active: false
         },
         {

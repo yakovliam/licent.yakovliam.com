@@ -1,49 +1,49 @@
 <template>
-  <div class="page">
-    <div class="scale-with-page">
-      <b-container class="container-1">
-        <b-row class="justify-content-center">
-          <b-col xl="6" lg="12" md="12" sm="12" cols="12">
-            <div class="card-box shadow p-3 mb-5 bg-white rounded-lg">
-              <div class="login-form">
-                <div class="title">Login</div>
-                <template>
-                  <b-alert :show="alert" dismissible @dismissed="alert = false" variant="danger">{{
-                      this.alertText
-                    }}
-                  </b-alert>
-                  <div>
-                    <b-form-group
-                        id="email"
-                        description="We'll never share your email with anyone else."
-                        :invalid-feedback="emailFeedback"
-                        :state="validEmail"
-                    >
-                      <b-form-input placeholder="Email" id="email" v-model="email" :state="validEmail"
-                                    trim></b-form-input>
-                    </b-form-group>
-                    <b-form-group
-                        id="password"
-                        :invalid-feedback="passwordFeedback"
-                        :state="validPassword"
-                    >
-                      <b-form-input type="password" placeholder="Password" id="password" v-model="password"
-                                    :state="validPassword"
-                                    trim></b-form-input>
-                    </b-form-group>
-                    <div class="submission">
-                      <b-button class="submit-button" v-on:click="this.submit" variant="outline-primary">LOG IN
-                      </b-button>
+    <div class="page">
+      <div class="scale-with-page">
+        <b-container class="container-1">
+          <b-row class="justify-content-center">
+            <b-col xl="6" lg="12" md="12" sm="12" cols="12">
+              <div class="card-box shadow p-3 mb-5 bg-white rounded-lg">
+                <div class="login-form">
+                  <div class="title">Login</div>
+                  <template>
+                    <b-alert :show="alert" dismissible @dismissed="alert = false" variant="danger">{{
+                        this.alertText
+                      }}
+                    </b-alert>
+                    <div>
+                      <b-form-group
+                          id="email"
+                          description="We'll never share your email with anyone else."
+                          :invalid-feedback="emailFeedback"
+                          :state="validEmail"
+                      >
+                        <b-form-input placeholder="Email" id="email" v-model="email" :state="validEmail"
+                                      trim></b-form-input>
+                      </b-form-group>
+                      <b-form-group
+                          id="password"
+                          :invalid-feedback="passwordFeedback"
+                          :state="validPassword"
+                      >
+                        <b-form-input type="password" placeholder="Password" id="password" v-model="password"
+                                      :state="validPassword"
+                                      trim></b-form-input>
+                      </b-form-group>
+                      <div class="submission">
+                        <b-button class="submit-button" v-on:click="this.submit" variant="outline-primary">LOG IN
+                        </b-button>
+                      </div>
                     </div>
-                  </div>
-                </template>
+                  </template>
+                </div>
               </div>
-            </div>
-          </b-col>
-        </b-row>
-      </b-container>
+            </b-col>
+          </b-row>
+        </b-container>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>

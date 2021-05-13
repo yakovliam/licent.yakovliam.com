@@ -8,8 +8,16 @@
         <b-row class="section">
           <b-col align-self="center">
             <div class="title">Licent</div>
-            <div class="subtitle">
-              The most robust and efficient digital product licensing service.
+            <div class="subtitle d-flex justify-content-center">
+              <div>
+                Licent is
+              </div>
+              <typical
+                  class="subtitle typicalWrapper p-0 ml-1"
+                  :steps="['Robust.', 3000, 'Efficient.', 3000, 'Creative.', 3000]"
+                  :wrapper="'div'"
+                  :loop="Infinity"
+              ></typical>
             </div>
           </b-col>
         </b-row>
@@ -132,9 +140,13 @@
 </template>
 
 <script>
+import typical from "vue-typical";
 
 export default {
   name: 'Home',
+  components: {
+    typical,
+  },
 };
 </script>
 
@@ -292,6 +304,17 @@ export default {
       width: 140px;
       opacity: 0.2;
     }
+  }
+}
+
+.typicalWrapper::after {
+  content: "|";
+  animation: blink 1s infinite step-start;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
   }
 }
 </style>
