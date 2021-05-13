@@ -141,6 +141,7 @@ export default {
         },
         {
           text: "Clients",
+          to: {name: 'clients'},
           active: false
         },
         {

@@ -16,7 +16,7 @@
             </b-card>
           </b-col>
         </b-row>
-        <b-row class="section">
+        <b-row class="mt-5 section">
           <b-col align-self="center" style="text-align: center">
             <b-card
                 header="May 10, 2021 (2)"
