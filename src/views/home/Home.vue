@@ -1,7 +1,7 @@
 <template>
   <div class="page">
     <b-modal id="info-modal" centered title="Info" ok-only>
-      <div class="modal-text">This service is currently Invite Only.</div>
+      <div class="modal-text">Contact <a href="mailto:jacob@yakovliam.com">jacob@yakovliam.com</a></div>
     </b-modal>
     <div class="scale-with-page">
       <b-container>
