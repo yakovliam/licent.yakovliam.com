@@ -46,6 +46,11 @@
             Your client name is valid.
           </b-form-valid-feedback>
         </b-form-group>
+        <b-form-group label="Allow Access">
+          <b-form-checkbox v-model="form.allow" name="switch-button" switch size="lg">
+            <b>{{ form.allow ? "Allowed" : "Disallowed" }}</b>
+          </b-form-checkbox>
+        </b-form-group>
 
         <b-button type="submit" variant="outline-primary">SAVE</b-button>
       </b-form>
@@ -61,14 +66,11 @@ export default {
     async submit() {
       if (!this.nameValidation) return;
 
-      // get new client name
-      const newClientName = this.form.name;
-
       // update using supabase
       // eslint-disable-next-line no-unused-vars
       const {data, error} = await this.$supabase
           .from('clients')
-          .update({name: newClientName})
+          .update({name: this.form.name, allow: this.form.allow})
           .eq('id', this.client.id);
 
       // push to clients
@@ -99,7 +101,7 @@ export default {
     // eslint-disable-next-line no-unused-vars
     const {data, error} = await this.$supabase
         .from('clients')
-        .select('id, name, token')
+        .select('id, name, token, allow')
         .eq('id', this.client.id);
 
     if (error || data.length <= 0) {
@@ -107,22 +109,27 @@ export default {
       this.$router.push('clients');
     }
 
-    this.client = data[0] || {id: this.client.id, name: "N/A", token: "N/A"};
+    this.client = data[0] || {id: this.client.id, name: "N/A", token: "N/A", allow: false};
 
     // populate form
     this.form.name = this.client.name;
     this.form.id = this.client.id;
     this.form.token = this.client.token;
+    this.form.allow = this.client.allow;
   },
   data() {
     return {
       client: {
-        id: '', name: undefined,
+        id: '',
+        name: '',
+        token: '',
+        allow: undefined,
       },
       form: {
         name: "",
         id: "",
         token: "",
+        allow: undefined,
       },
       breadcrumb: [
         {

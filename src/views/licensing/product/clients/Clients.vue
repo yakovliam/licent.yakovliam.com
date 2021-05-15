@@ -31,6 +31,14 @@
             </div>
           </template>
 
+          <template #cell(allowed)="data">
+            <div class="text-nowrap d-inline-flex">
+              <b-icon scale="5" icon="dot" class="h5 mt-1"
+                      v-bind:class="data.item.allow ? 'online-dot' : 'offline-dot'"></b-icon>
+              <p class="ml-2 p-1">{{ data.item.allow ? "Allowed" : "Disallowed" }}</p>
+            </div>
+          </template>
+
           <template #cell(actions)="data">
             <div class="text-nowrap">
               <b-button size="sm" variant="outline-info" @click="seeData(data)">
@@ -104,7 +112,7 @@ export default {
       perPage: 10,
       currentPage: 1,
       totalRows: 99,
-      fields: ['name', 'id', 'token', 'actions'],
+      fields: ['name', 'id', 'token', 'allowed', 'actions'],
       breadcrumb: [
         {
           text: 'Licensing',
@@ -139,7 +147,7 @@ export default {
 
       const {data} = await this.$supabase
           .from('clients')
-          .select('id, token, name')
+          .select('id, token, name, allow')
           .eq('product_id', this.product.id)
           .range(minRange, maxRange - 1);
 
@@ -213,5 +221,14 @@ button {
 
   font-size: 15px;
   font-weight: 800;
+}
+
+.online-dot {
+  size: 10rem;
+  color: #3ba55c;
+}
+
+.offline-dot {
+  color: #ed4245;
 }
 </style>
